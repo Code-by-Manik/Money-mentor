@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Money Mentor - Understand your money. Make better decisions.">
+    <title>Money Mentor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Icon sprite -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></symbol>
+            <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+            <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></symbol>
+            <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></symbol>
+            <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12 15a3 3 0 100-6 3 3 0 000 6zM19 12h2M3 12h2M12 3v2M12 19v2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></symbol>
+        </defs>
+    </svg>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <!-- Sidebar (bottom bar on mobile) -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <span class="brand-mark" aria-hidden="true">M</span>
+            <span class="brand-name">Money Mentor</span>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+            <a class="nav-link active" href="#overview" aria-current="true">
+                <svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link" href="#transactions">
+                <svg class="icon" aria-hidden="true"><use href="#i-list"/></svg>
+                <span>Transactions</span>
+            </a>
+            <a class="nav-link" href="#insights">
+                <svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg>
+                <span>Insights</span>
+            </a>
+            <a class="nav-link" href="#statements">
+                <svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>
+                <span>Statements</span>
+            </a>
+            <button class="nav-link is-disabled" type="button" aria-disabled="true" title="Coming soon">
+                <svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg>
+                <span>Settings</span>
+                <span class="badge">Coming soon</span>
+            </button>
+        </nav>
+
+        <p class="sidebar-tagline">Understand your money. Make better decisions.</p>
+
+    </aside>
+
+    <main class="main" id="main-content">
+
+        <!-- Overview -->
+        <section id="overview" aria-labelledby="greeting">
+
+            <header class="page-header">
+                <div class="mobile-brand" aria-hidden="true">
+                    <span class="brand-mark">M</span>
+                    <span class="brand-name">Money Mentor</span>
+                </div>
+                <h1 id="greeting">Good evening</h1>
+                <p class="subtitle">Here's your financial overview.</p>
+            </header>
+
+            <!-- Summary cards -->
+            <section class="cards" aria-label="Financial summary">
+
+                <article class="card stat">
+                    <h2 class="stat-label">Net Amount</h2>
+                    <p class="stat-value" id="net-amount">₹0</p>
+                    <p class="stat-hint">Money in minus money out</p>
+                </article>
+
+                <article class="card stat">
+                    <h2 class="stat-label">Money In</h2>
+                    <p class="stat-value positive" id="total-received">₹0</p>
+                    <p class="stat-hint">Total inflow</p>
+                </article>
+
+                <article class="card stat">
+                    <h2 class="stat-label">Money Out</h2>
+                    <p class="stat-value negative" id="total-paid">₹0</p>
+                    <p class="stat-hint">Total outflow</p>
+                </article>
+
+                <article class="card stat">
+                    <h2 class="stat-label">Transactions</h2>
+                    <p class="stat-value" id="summary-count">0</p>
+                    <p class="stat-hint">In selected period</p>
+                </article>
+
+            </section>
+
+            <!-- Filters -->
+           <section class="card filters-section">
+    <div class="filters">
+        <div class="filter-group">
+            <label for="start-date">From</label>
+            <input type="date" id="start-date">
+        </div>
+
+        <div class="filter-group">
+            <label for="end-date">To</label>
+            <input type="date" id="end-date">
+        </div>
+
+        <button class="btn btn-ghost" id="clear-filters">
+            Clear filters
+        </button>
+    </div>
+</section>
+
+        </section>
+
+
+        <div class="split">
+
+            <!-- Statements -->
+            <section class="card panel" id="statements" aria-labelledby="statements-title">
+
+                <div class="section-header">
+                    <div>
+                        <h2 id="statements-title">Import your statement</h2>
+                        <p class="section-sub">Upload a CSV bank statement and let Money Mentor organize your transactions.</p>
+                    </div>
+                </div>
+
+                <label class="dropzone" id="dropzone" for="statement-file">
+                    <svg class="icon icon-lg" aria-hidden="true"><use href="#i-upload"/></svg>
+                    <span class="dropzone-title">Drop your CSV here, or click to browse</span>
+                    <span class="dropzone-file" id="file-name">No file selected</span>
+                    <input type="file" id="statement-file" accept=".csv">
+                </label>
+
+                <div class="upload-actions">
+                    <p id="upload-status" class="sync-status" aria-live="polite">Select a CSV file to begin.</p>
+                    <button class="btn btn-primary" id="upload-button" type="button">Upload Statement</button>
+                </div>
+
+
+                <p id="sync-status" class="sync-status" aria-live="polite"></p>
+
+            </section>
+
+            <!-- Insights -->
+            <section class="card panel" id="insights" aria-labelledby="insights-title">
+
+                <div class="section-header">
+                    <h2 id="insights-title">Spending by Category</h2>
+                    <span id="analytics-status">Spending by category</span>
+                </div>
+
+                <div id="app-analytics-container">
+                    <div class="loading">Loading spending insights...</div>
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- Transactions -->
+        <section class="card panel" id="transactions" aria-labelledby="transactions-title">
+
+            <div class="section-header">
+                <h2 id="transactions-title">Transaction History</h2>
+                <span id="transaction-count">0 transactions</span>
+            </div>
+
+            <div id="transactions-container" aria-live="polite">
+                <div class="loading">Loading transactions...</div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
